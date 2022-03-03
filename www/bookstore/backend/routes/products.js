@@ -3,15 +3,15 @@ const router = express.Router();
 const {database} = require('../config/helpers');
 
 /* Todos los productos */
-/* GET ALL PRODUCTS */
-router.get('/', function (req, res) {       // Sending Page Query Parameter is mandatory http://localhost:3636/api/products?page=1
+
+router.get('/', function (req, res) {       
     let page = (req.query.page !== undefined && req.query.page !== 0) ? req.query.page : 1;
-    const limit = (req.query.limit !== undefined && req.query.limit !== 0) ? req.query.limit : 10;   // set limit of items per page
+    const limit = (req.query.limit !== undefined && req.query.limit !== 0) ? req.query.limit : 10;   
     let startValue;
     let endValue;
     if (page > 0) {
-        startValue = (page * limit) - limit;     // 0, 10, 20, 30
-        endValue = page * limit;                  // 10, 20, 30, 40
+        startValue = (page * limit) - limit;     // desde 0 a 
+        endValue = page * limit;                  // el limite que le coloques
     } else {
         startValue = 0;
         endValue = 10;
@@ -47,7 +47,7 @@ router.get('/', function (req, res) {       // Sending Page Query Parameter is m
         .catch(err => console.log(err));
 });
 
-/* GET ONE PRODUCT*/
+/* Solo se consulta un producto*/
 router.get('/:prodId', (req, res) => {
     let productId = req.params.prodId;
     database.table('products as p')
@@ -78,10 +78,10 @@ router.get('/:prodId', (req, res) => {
         }).catch(err => res.json(err));
 });
 
-/* GET ALL PRODUCTS FROM ONE CATEGORY */
-router.get('/category/:catName', (req, res) => { // Sending Page Query Parameter is mandatory http://localhost:3636/api/products/category/categoryName?page=1
-    let page = (req.query.page !== undefined && req.query.page !== 0) ? req.query.page : 1;   // check if page query param is defined or not
-    const limit = (req.query.limit !== undefined && req.query.limit !== 0) ? req.query.limit : 10;   // set limit of items per page
+/* Todos los productos sobre una categoria */
+router.get('/category/:catName', (req, res) => { 
+    let page = (req.query.page !== undefined && req.query.page !== 0) ? req.query.page : 1;   
+    const limit = (req.query.limit !== undefined && req.query.limit !== 0) ? req.query.limit : 10;   
     let startValue;
     let endValue;
     if (page > 0) {
@@ -92,7 +92,7 @@ router.get('/category/:catName', (req, res) => { // Sending Page Query Parameter
         endValue = 10;
     }
 
-    // Get category title value from param
+    // Toma por categoria el titulo
     const cat_title = req.params.catName;
 
     database.table('products as p')
@@ -120,7 +120,7 @@ router.get('/category/:catName', (req, res) => { // Sending Page Query Parameter
                     products: prods
                 });
             } else {
-                res.json({message: `No products found matching the category ${cat_title}`});
+                res.json({message: `No hay productos ${cat_title} en la categoria.`});
             }
         }).catch(err => res.json(err));
 

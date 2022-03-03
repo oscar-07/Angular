@@ -89,6 +89,7 @@ router.post('/new', (req, res) => {
                     }else{
                         data.quantity = 0;
                     }
+                    /* agregar los detalles y generar un nuevo id */
                     database.table('orders_details')
                         .insert({
                             order_id: newOrderId,
@@ -105,9 +106,28 @@ router.post('/new', (req, res) => {
              }else{
                 res.json({message: 'sucedio un error en la nueva orden, ver detalles ',success: false})
              }
+             res.json({
+                 message: `Orden generada correctamente su id es ${newOrderId}`,
+                 success: true,
+                 order_id: newOrderId,
+                 products: products
+             });
         }).catch(err => console.log(err));
+    }
+    else{
+        res.json({message: 'Fallo al generar una nueva orden',success: false})
     }
 
 });
+
+
+/*Pago falso */
+router.post('/payment',(req,res) =>{
+    setTimeout( ()=>{
+        res.status(200).json({success: true});
+    },3000)
+});
+
+
 
 module.exports = router;
