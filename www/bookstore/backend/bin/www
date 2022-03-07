@@ -56,5 +56,5 @@ function onListening(){
         ? 'Pipe' + addr
         : 'port' + addr.port;
     debug('Listening on' + bind);
-    console.log('prendido server'+" "+bind);
+    console.log('Servidor prendido');
 }

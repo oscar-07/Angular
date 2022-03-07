@@ -18,9 +18,12 @@ app.use('/api/orders',usersRoute);
 
 
 app.use(cors({
+    allowedHeaders: 'Content-Type, Authorization, Origin, X-Requested-With Accept',
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200,
+    origin:'http://localhost:3000', 
     origin: "*",
     methods:['GET','POST','PATCH','DELETE','PUT'],
-    allowedHeaders: 'Content-Type, Authorization, Origin, X-Requested-With Accept'
 }));
 
 app.use(logger('dev'));
