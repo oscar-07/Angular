@@ -51,7 +51,7 @@
             </div>
             <div class="col-md-12">
                 <div class="row">
-                    <!--
+                    
                     <div class="col-md-4 col-sm-6" *ngFor="let p of products" >
                         <div class="card my-2">
                             <img [src]="p.image" alt="{{p.name}}" width="200px" class="card-img-top" (click)="selectProduct(p.id)" style="cursor:pointer;">
@@ -60,6 +60,7 @@
                                     <p>{{p.name | titlecase}}</p>
                                 </div>
                             </div>
+                            <!--
                             <div class="card-body">
                                 <h6>{{p.description.substr(0,40)}} ....</h6>
                                 <p class="lead">{{p.price | currency:'USD'}}</p>
@@ -74,9 +75,10 @@
                                     </button>
                                 </div>
                             </div>
+                            -->
                         </div>                  
                     </div>
-                    -->
+                    
                 </div>
             </div>
         </div>

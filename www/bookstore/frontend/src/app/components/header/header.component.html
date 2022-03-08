@@ -119,22 +119,18 @@
             </div>  
                 
             <div class="cart-summary">
-              <!--
-                <small>
-                {{
-                  cartData.data[0].numInCart !== 0 ? cartData.data.lenght : 0
-                }}
-                Item(s) selected
+              <small>
+                
+                  3 cosas seleccionadas
+                  <!-- {{ cartData.data[0].numInCart !== 0 ? cartData.data.lenght : 0 }}-->
               </small>
-            
-              <h5>Total : {{ cartTotal | currency: "USD" }}</h5>
-              -->
+              <h5>Total : {{ 0 | currency: "USD" }}</h5>
+              <!-- <h5>Total : {{ cartTotal | currency: "USD" }}</h5> -->
+              
             </div>
             <div class="cart-btns">
               <a routerLink="/cart">Ver Carrito</a>
-              <a routerLink="/checkout">
-                Revisar <i class="fa fa-arrow-circle-right"></i
-              ></a>
+              <a routerLink="/checkout">Revisar <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!--Menu-->
@@ -154,7 +150,7 @@
     <div class="container">
         <div id="responsive-nav">
             <ul class="main-nav nav py-3">
-                <li class="active"><a href="#">Inicio</a></li>
+                <li class="active"><a routerLink="/">Inicio</a></li>
                 <li><a href="#">Categorias</a></li>
                 <li><a href="#">Bebidas</a></li>
                 <li><a href="#">Contactanos</a></li>

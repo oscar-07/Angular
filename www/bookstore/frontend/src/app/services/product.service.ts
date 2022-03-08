@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -14,7 +13,7 @@ export class ProductService {
   
   /*Aqui toma los productos del backend*/
   getAllProducts(numberOfResults = 10){
-    return this.http.get(this.SERVER_URL + '/products',{ 
+    return this.http.get<any>(this.SERVER_URL + '/products',{ 
       params: {
         limit: numberOfResults.toString()
       }
