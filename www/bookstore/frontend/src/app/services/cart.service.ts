@@ -78,4 +78,36 @@ export class CartService {
                }
   }
 
+
+  AddProductToCart(id: number, quantity?: number){
+    this.productService.getSingleProduct(id).subscribe(prod => {
+      //si el carrito esta vacio
+      if (this.cartDataServer.data[0].product === undefined){
+        this.cartDataServer.data[0].product = prod;
+        this.cartDataServer.data[0].numInCart = quantity !== undefined ? quantity : 1;
+        //aqui calcula el monto
+        this.cartDataclient.prodData[0].incart = this.cartDataServer.data[0].numInCart;
+        this.cartDataclient.prodData[0].id = prod.id;
+        this.cartDataclient.total = this.cartDataServer.total;
+        localStorage.setItem('cart', JSON.stringify(this.cartDataServer));
+        this.cartData$.next({...this.cartDataServer});
+      }else{
+        //si el carrito tiene cosas
+        let index = this.cartDataServer.data.findIndex(p => p.product.id ===prod.id ); //-1 o toma un valor positivo
+        //a. si esta listo el carritox
+        if(index !== -1){
+          if(quantity !== undefined && quantity <= prod.quantity){
+            this.cartDataServer.data[index].numInCart = this.cartDataServer.data[index].numInCart < prod.quantity ? quantity : prod.quantity;
+          }
+        }
+
+      }
+    })
+
+
+
+
+      //b. si el carrito no tiene cosas
+  }
+
 }
